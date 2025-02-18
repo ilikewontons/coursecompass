@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Major & Minor Core | Campus Compass</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Menu Styles */
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            color: white;
+            background-color: #333;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            transform: rotate(90deg);
+            background-color: #444;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            padding-top: 60px;
+            transition: right 0.3s ease-in-out;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: #575757;
+            transform: translateX(5px);
+        }
+
+        .menu.open {
+            right: 0;
+        }
+
+        /* Table Container Styles */
+        .table-container {
+            background-color: #333;
+            padding: 60px 20px 40px;
+            margin-top: 60px;
+            box-sizing: border-box;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+            color: #333;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: #444;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover {
+            background-color: #ececec;
+            transform: scale(1.02);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            background-color: #555;
+            color: white;
+            transition: all 0.3s ease;
+            width: 160px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #777;
+            transform: translateY(-3px);
+        }
+
+        /* Search Box Styles */
+        .search-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu Icon for Popup -->
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+    <!-- Popup Menu -->
+    <div class="menu" id="menu">
+        <a href="campuscompass.html">Back to Home</a>
+        <a href="academic-support.html">Back to Support</a>
+    </div>
+
+    <!-- Search Box -->
+    <input type="text" id="searchInput" class="search-box" placeholder="Search for a major..." onkeyup="searchTable()">
+
+    <!-- Table Container -->
+    <div class="table-container">
+        <a href='#' class='btn'>Prerequisites</a>
+        <table id="majorTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Major and Minor Degree</th>
+                    <th>Major & Minor Core Course (100 Level)</th>
+                    <th>Required Prerequisite Course(s)</th>
+                    <th>Additional Requirements</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Advertising and Branding (BBA - CM)</td><td>GMGT101 Principles of Management</td><td>None</td><td>None</td></tr>
+                <tr><td>2</td><td>Applied Mathematics (BSc)</td><td>MATH155 Introduction to Discrete Mathematics</td><td>CSIT101/102/121/103 - Introduction to Programming</td><td>Mathematics at class 12th level</td></tr>
+                <tr><td>3</td><td>Business Analytics (BBA)</td><td>OPSM102 Introduction to Operations Research</td><td>None</td><td>None</td></tr>
+                <tr><td>4</td><td>Communication Studies (BBA - CM)</td><td>GMGT101 Principles of Management</td><td>None</td><td>None</td></tr>
+                <tr><td>5</td><td>Computer Science (BSc)</td><td>None</td><td>CSIT101/103 - Introduction to Programming</td><td>Mathematics at class 12th level</td></tr>
+                <tr><td>6</td><td>Computer Science & Design (BSc)</td><td>None</td><td>CSIT101/103 + DESG104/101 - Programming & Design Explorations</td><td>Mathematics at class 12th level</td></tr>
+                <tr><td>7</td><td>Dance (Minor)</td><td>None</td><td>DANC101 & DANC105 - Introduction to Dance</td><td>None</td></tr>
+                <tr><td>8</td><td>Data Science & Economics (BSc)</td><td>MATH155 Introduction to Discrete Mathematics</td><td>CSIT101/102/121/103 + ECON101/102 + ECON122/MATH151/OPSM102</td><td>Mathematics at class 12th level</td></tr>
+                <tr><td>9</td><td>Design (Minor)</td><td>None</td><td>DESG101/104 - Elements & Principles of Design</td><td>None</td></tr>
+                <tr><td>10</td><td>Design Management (BBA)</td><td>DESG101 Elements & Principles of Design, OPSM102 Intro to Operations Research</td><td>DESG104/101 - Design Explorations</td><td>None</td></tr>
+                <tr><td>11</td><td>Digital Marketing & Communications (BBA - CM)</td><td>DMAC101 Introduction to Digital Marketing, GMGT101 Principles of Management</td><td>None</td><td>None</td></tr>
+                <tr><td>12</td><td>Economics (BA)</td><td>None</td><td>ECON101/102 + ECON122/MATH151/OPSM102</td><td>Mathematics at class 12th level</td></tr>
+                <tr><td>13</td><td>Entrepreneurship (BBA)</td><td>OPSM102 Introduction to Operations Research</td><td>None</td><td>None</td></tr>
+                <tr><td>14</td><td>Environmental Studies (BA)</td><td>None</td><td>None</td><td>None</td></tr>
+                <tr><td>15</td><td>Film & Television Management (BBA - CM)</td><td>GMGT101 Principles of Management</td><td>None</td><td>None</td></tr>
+                <tr><td>16</td><td>Finance (BBA)</td><td>OPSM102 Introduction to Operations Research</td><td>None</td><td>None</td></tr>
+                <tr><td>17</td><td>General Management (BBA)</td><td>OPSM102 Introduction to Operations Research</td><td>None</td><td>None</td></tr>
+                <tr><td>18</td><td>Human Resource Management (BBA)</td><td>OPSM102 Introduction to Operations Research</td><td>None</td><td>None</td></tr>
+                <tr><td>19</td><td>International Studies (BA)</td><td>None</td><td>None</td><td>None</td></tr>
+                <tr><td>20</td><td>Journalism (BA)</td><td>None</td><td>None</td><td>None</td></tr>
+                <tr><td>21</td><td>Literary & Cultural Studies (BA)</td><td>None</td><td>LITR101/CULS101/LITR111 etc.</td><td>None</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Toggle Menu Function
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('open');
+        }
+
+        // Search Function
+        function searchTable() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById("majorTable");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let majorName = cells[1].textContent.toLowerCase();
+                if (majorName.includes(filter)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
