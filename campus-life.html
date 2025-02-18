@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏩 Campus Life | Campus Compass</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background: url('campuslifephoto.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content-box {
+            background: #2c2c2c;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1.2s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            80% { transform: translateY(-5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 600;
+            color: #f0f0f0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 18px;
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        .explore-btn a {
+            text-decoration: none;
+            background: #555;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .explore-btn a:hover {
+            background: #444;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            color: white;
+            background-color: #333;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            transform: rotate(90deg) scale(1.1);
+            background-color: #444;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #222;
+            color: white;
+            padding-top: 60px;
+            transition: right 0.4s ease-in-out;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0.9;
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: #444;
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+        .menu.open {
+            right: 0;
+        }
+
+        .flame-section, .flame-fest-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111;
+            padding: 50px;
+            color: white;
+            margin-top: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .flame-section:hover, .flame-fest-section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .flame-section img, .flame-fest-section img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .flame-section img:hover, .flame-fest-section img:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Menu Icon for Popup -->
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+    <!-- Popup Menu -->
+    <div class="menu" id="menu">
+        <a href="campuscompass.html">Home</a>
+    </div>
+
+    <div class="container">
+        <div class="content-box">
+            <h1>🏫 Campus Life</h1>
+            <p>Explore student organizations, clubs, and events happening on campus to enhance your university experience.</p>
+            <div class="explore-btn"><a href="#kurukshetra">Explore</a></div>
+        </div>
+    </div>
+
+    <!-- FLAME Kurukshetra Section -->
+    <section id="kurukshetra" class="flame-section">
+        <div class="text-box">
+            <h2>FLAME Kurukshetra</h2>
+            <p>FLAME Kurukshetra is the flagship inter-collegiate festival organized by FLAME University in Pune, India. This annual event serves as a platform for students to showcase their talents across various domains, including sports, cultural activities, and management competitions. The festival aims to highlight the best in every aspect of competition, fostering a spirit of enthusiasm and excellence among participants.</p>
+        </div>
+        <img src="kuru1.jpeg" alt="FLAME Kurukshetra">
+    </section>
+
+    <!-- FLAME Fest Section -->
+    <section class="flame-fest-section">
+        <div class="text-box">
+            <h2>FLAME Fest</h2>
+            <p>FLAME Fest is the university's cultural festival, featuring competitions in gaming, poetry writing, creative writing, public speaking, advertising contests, dumb charades, treasure hunts, art marathons, singing, photography, dance, drama, and fashion shows. Students from different houses compete, with the house winning the most contests awarded the FLAME Fest trophy. The 2025 edition is currently underway, with participant registration forms recently released.</p>
+        </div>
+        <img src="flamefest.jpeg" alt="FLAME Fest">
+    </section>
+
+    <script>
+        // Toggle Menu Function
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
