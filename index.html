@@ -1,1 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Compass - Your University Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Background Image */
+        body {
+            background: url('flameuniversitymainimage.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            opacity: 50;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 80px;
+            height: auto;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 220px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.2);
+        }
+
+        /* About Us Section */
+        .about-section {
+            background: #f8f9fa;
+            padding: 60px 8%; /* Reduced left padding */
+            display: flex;
+            justify-content: flex-start; /* Moves content left */
+            align-items: center;
+            gap: 40px; /* Ensures spacing between text and image */
+        }
+
+        .about-content {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInSection 1.5s ease-in-out forwards 1.2s;
+            text-align: center;
+        }
+
+        @keyframes fadeInSection {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Image beside About Us */
+        .about-image {
+            max-width: 600px;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: fadeInImage 1.5s ease-in-out forwards 1.5s;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeInImage {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Right-side Menu */
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            color: white;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            padding-top: 60px;
+            transition: right 0.3s ease-in-out;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: #575757;
+        }
+
+        .menu.open {
+            right: 0;
+        }
+
+        /* Team Section Style */
+        .team-section {
+            background-color: #333;
+            color: white;
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .team-images {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .team-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .team-img-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .team-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-img:hover {
+            transform: scale(1.3); /* Increased the scale to 1.3 for 30% bigger images */
+        }
+
+        .team-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-img-container:hover .team-name {
+            opacity: 1;
+        }
+
+        /* Team Header */
+        .team-header {
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0a500;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Logo -->
+    <img src="campuslogo.png" alt="Course Compass Logo" class="logo">
+
+    <!-- Menu Icon -->
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+    <!-- Right-side Menu -->
+    <div class="menu" id="menu">
+        <a href="campuscompass.html">Home</a>
+        <a href="academic-support.html">Academic Support</a>
+        <a href="mentorship.html">Mentorship & Networking</a>
+        <a href="campus-life.html">Campus Life</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-box">
+            <h1>Welcome to Course Compass</h1>
+            <p>Your go-to resource for academic support, mentorship, and campus life insights.</p>
+        </div>
+
+        <div class="button-container">
+            <a href="academic-support.html" class="btn">Academic Support</a>
+            <a href="mentorship.html" class="btn">Mentorship & Networking</a>
+            <a href="campus-life.html" class="btn">Campus Life</a>
+        </div>
+    </div>
+
+    <!-- About Us Section with Image -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h1>About Us</h1>
+            <p>We are a group of UG1 students who understand the challenges of transitioning into life at FLAME. Our goal is to make this process easier for future UG1s by providing the guidance and resources we wish we had when we joined. Whether it’s navigating academics, campus life, or settling in, we’re here to help make your entry into FLAME as smooth as possible! Through our Digital Literacy course, we learned to code and built this website using HTML to share valuable insights and help new students have a smoother entry into FLAME.</p>
+        </div>
+
+        <!-- Image beside the text -->
+        <div class="about-image">
+            <img src="CAMPUS-LIFE.jpg" alt="Mentorship & Networking">
+        </div>
+    </section>
+
+    <!-- New Scrollable Section -->
+    <section id="team" class="team-section">
+        <h1 class="team-header">Our Team</h1> <!-- Added Team Header -->
+        
+        <div class="team-images">
+            <!-- Row 1 -->
+            <div class="team-row">
+                <div class="team-img-container">
+                    <img src="adityamehta.png" alt="Aditya Mehta" class="team-img">
+                    <div class="team-name">Aditya Mehta</div>
+                </div>
+                <div class="team-img-container">
+                    <img src="samyaarora.png" alt="Samya Arora" class="team-img">
+                    <div class="team-name">Samya Arora</div>
+                </div>
+                <div class="team-img-container">
+                    <img src="shreeyaram.png" alt="Shreeya Ram" class="team-img">
+                    <div class="team-name">Shreeya Ram</div>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="team-row">
+                <div class="team-img-container">
+                    <img src="sowmya.png" alt="Sowmya Dhulipudi" class="team-img">
+                    <div class="team-name">Sowmya Dhulipudi</div>
+                </div>
+                <div class="team-img-container">
+                    <img src="sexy.png" alt="Akshat Jain" class="team-img">
+                    <div class="team-name">Akshat Jain</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('open');
+        }
+    </script>
+
+</body>
+
+</html>
